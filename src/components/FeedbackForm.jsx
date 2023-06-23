@@ -3,7 +3,7 @@ import Card from './shared/Card'
 import Button from './shared/Button'
 import RatingSelect from './RatingSelect'
 
-function FeedbackForm () {
+function FeedbackForm ({handleAdd}) {
 
     const [feedback, setFeedback] = useState("")
     const [message, setMessage] = useState("")
@@ -25,11 +25,23 @@ function FeedbackForm () {
         setFeedback(event.target.value)
     } 
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        if (feedback.trim().length > 10) {
+            const newFeedback = {
+                text: feedback,
+                rating
+            }
+            handleAdd(newFeedback);
+            setFeedback("")
+        }
+    }
+
     return (
         <Card>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <h2>How would you rate my personality?</h2>
-                <RatingSelect select={(rating) => console.log(rating)}/>
+                <RatingSelect select={(rating) => setRating(rating)}/>
                 <div className="input-group">
                     <input
                         type="text"

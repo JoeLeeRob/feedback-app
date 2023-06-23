@@ -13,7 +13,7 @@ function FeedbackItem({ item, handleDelete }) {
             <div onClick={() => handleDelete(item.id)} className="close">
                 <FaTimes color='purple' />
             </div>
-            <div className="text-display">{item.text} Hi</div>
+            <div className="text-display">{item.text}</div>
         </Card>
     )
 }
